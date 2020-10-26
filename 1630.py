@@ -1,5 +1,5 @@
 '''
-l4zyc0d3r /// 1629 /// Sun Oct 25, 2020
+l4zyc0d3r /// 1630 /// Sun Oct 25, 2020
 '''
 class Solution:
     def checkArithmeticSubarrays(self, N: List[int], l: List[int], r: List[int]) -> List[bool]:
