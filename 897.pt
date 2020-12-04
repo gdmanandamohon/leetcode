@@ -1,0 +1,37 @@
+'''
+@author: l4zyc0d3r 
+People who are happy makes other happy. I am gonna finish it slowly but definitely.cdt
+'''
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def __init__(self):
+        self.li=[]
+    def crate(self):
+        r,h =None,None
+        for x in self.li:
+            if not r:
+                r = x
+                h = x
+            else:
+                r.right = x
+                r=x
+        return h
+                
+    def increasingBST(self, root: TreeNode) -> TreeNode:
+        if not root: return None
+        lt = root.left
+        rt = root.right
+        self.increasingBST(lt)
+        root.left = None
+        root.right = None
+        self.li.append(root)
+        self.increasingBST(rt)
+        return self.crate()
+    
