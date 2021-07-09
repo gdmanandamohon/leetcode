@@ -2,6 +2,8 @@
 @author: l4zyc0d3r 
 People who are happy makes other happy. I am gonna finish it slowly but definitely.cdt
 '''
+
+#O(N*N)
 class Solution:
     def largestRectangleArea(self, H: List[int]) -> int:
         st, mx, i  = [], 0, 0
