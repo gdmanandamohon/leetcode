@@ -5,17 +5,13 @@ People who are happy makes other happy. I am gonna finish it slowly but definite
 
 class Solution:
     def numPairsDivisibleBy60(self, T: List[int]) -> int:
-        dd = collections.defaultdict(list)
-        c=0
-        for x in T:
-            r = x%60
-            if 60 - r in dd:
-                c+= dd[60-r]
-            elif r ==0 and r in dd:
-                c+= dd[0]
-            if r not in dd:dd[r] =1
-            else: dd[r]+=1
+        dc,c = collections.defaultdict(int),0
+        for t in T:
+            if t%60==0:
+                c+=dc[t%60]
+            elif 60 - t%60 in dc:
+                c+=dc[60 - t%60]
+            dc[t%60]+=1
         return c
-                
             
             
