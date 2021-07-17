@@ -1,24 +1,38 @@
+class TrieNode:
+    def __init__(self):
+        self.children = [None]*26
+        self.isEndOfWord = False
+
+
 class Trie:
     def __init__(self):
-        self.kids = [None for _ in range(26)]
-        self.isEnd =False 
+        self.root = TrieNode()
+    
+    
+    def _charToIndex(self,ch):
+        return ord(ch)-ord('a')
+    
     
     def insert(self, key):
-        cur = self
-        for k in key:
-            print(cur.kids[ord(k)-ord('a')])
-            if not cur.kids[ord(k)-ord('a')]:
-                cur.kids[ord(k)-ord('a')] =  Trie()
-            cur = cur.kids
-        cur.isEnd=True
+        pCrawl = self.root
+        
+        for i,ch in enumerate(key):
+            index = self._charToIndex(ch)
+            if not pCrawl.children[index]:
+                pCrawl.children[index] = TrieNode()
+            pCrawl = pCrawl.children[index]
+        pCrawl.isEndOfWord = True # mark last node as leaf
     
     def search(self, key):
-        cur = self
-        for k in key:
-            if cur.kids[ord(k)-ord('a')] != -1:
+        pCrawl = self.root
+        for i,ch in enumerate(key):
+            index = self._charToIndex(ch)
+            if not pCrawl.children[index]:
                 return False
-            cur = cur.kids[ord(k)-ord('a')] 
-        return cur.isEnd
+            pCrawl = pCrawl.children[index]
+        return pCrawl.isEndOfWord
+    
+    
 board = ['amdklas', 'asdas','asdwqrew']
 root = Trie()
 for wd in board:
