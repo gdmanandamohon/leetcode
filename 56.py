@@ -17,3 +17,22 @@ class Solution:
             i+=1
         ans.append([st,en])
         return ans
+
+
+#Choose the interval which has started first and also maximum length
+class Solution:
+    def merge(self, I: List[List[int]]) -> List[List[int]]:
+        I.sort(key = lambda x:(x[0], x[1]-x[0]))
+        i,l = 0,len(I) 
+        st, en = 0,0
+        ans =[]
+        while i<l:
+            st, en = I[i][0], I[i][1]
+            #print(st,en)
+            while (i+1<l) and (I[i+1][0]<=en ): 
+                i+=1
+                st = min(I[i][0], st)
+                en = max(en, I[i][1])
+            ans.append([st,en])
+            i+=1
+        return ans
